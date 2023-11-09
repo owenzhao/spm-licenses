@@ -7,3 +7,6 @@ Command line tool to collect LICENSE files from SPM dependencies
 ./spm-licenses -w /path/to/workspace -o /output/file
 ```
 The output is a plist file ready to be included into settings bundle as "Acknowledgements" section.
+
+## Read this first
+https://github.com/MacPaw/spm-licenses/issues/1
