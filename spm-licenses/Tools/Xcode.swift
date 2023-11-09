@@ -27,6 +27,8 @@ struct Xcode {
 private extension Xcode {
     
     static func readOverridenDerivedDataPath() -> String? {
+      return nil
+      
         let task = Process()
         let pipe = Pipe()
         task.executableURL = URL(fileURLWithPath: "/usr/bin/defaults")

@@ -41,12 +41,12 @@ guard let package = packageInfo as? [String: Any] else {
     exit(0)
 }
 
-guard let object = package["object"] as? [String: Any] else {
-    print("Invalid obejct format")
-    exit(0)
-}
+//guard let object = package["object"] as? [String: Any] else {
+//    print("Invalid obejct format")
+//    exit(0)
+//}
 
-guard let pins = object["pins"] as? [[String: Any]] else {
+guard let pins = package["pins"] as? [[String: Any]] else {
     print("Invalid pins format")
     exit(0)
 }
@@ -63,7 +63,15 @@ func projectsInfo(at url: URL) throws -> [Xcode.Project] {
 }
 let projects = try projectsInfo(at: projectsRL)
 
-guard let currentProject = projects.first(where: ({ $0.workspacePath == workspacePath.expandingTildeInPath })) else {
+guard let currentProject = projects.first(where: ({ workspacePath.expandingTildeInPath.contains($0.workspacePath!) })) else {
+  
+  projects.forEach { project in
+    print(project.workspacePath)
+  }
+  
+  print()
+  print(workspacePath.expandingTildeInPath)
+  
     print("Derived data missing for workspace")
     exit(0)
 }
